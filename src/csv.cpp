@@ -32,6 +32,7 @@ void csvlib::read_csv(string file_path)
 		{
 			while (getline(tokenize, token, ','))
 			{
+				column_index.insert({token, column_names.size()});
 				column_names.push_back(token);
 			}
 			line_count++;
@@ -46,26 +47,72 @@ void csvlib::read_csv(string file_path)
 	}
 }
 
-void csvlib::show_data()
+void csvlib::show()
+{
+	show_data(column_values.size());
+}
+
+void csvlib::head(long int rows)
+{
+	show_data(rows);
+}
+
+void csvlib::tail(long int rows)
+{
+	show_data(-rows);
+}
+
+void csvlib::show_data(long int rows)
 {
 	for (auto name : column_names)
 	{
 		printf("%-10s\t", name.c_str());
 	}
 	printf("\n");
-	for (auto values : column_values)
+
+	long int limit = 0;
+	if (rows >= 0)
 	{
-		for (auto token : values)
+		limit = rows > column_values.size() ? column_values.size() : rows;
+		for (long int n_row = 0; n_row < limit; n_row++)
 		{
-			printf("%-10s\t", token.c_str());
+			vector<string> values = column_values[n_row];
+			for (auto &token : values)
+			{
+				printf("%-10s\t", token.c_str());
+			}
+			printf("\n");
 		}
-		printf("\n");
+	}
+	else
+	{
+		limit = -rows > column_values.size() ? 0 : column_values.size() + rows;
+		for (long int n_row = limit; n_row < column_values.size(); n_row++)
+		{
+			vector<string> values = column_values[n_row];
+			for (auto &token : values)
+			{
+				printf("%-5s\t", token.c_str());
+			}
+			printf("\n");
+		}
+		
 	}
 }
 
+vector<string> csvlib::get_columns()
+{
+	return column_names;
+}
 
+vector<vector<string>> csvlib::get_rows()
+{
+	return column_values;
+}
 
-
-
+vector<string> csvlib::loc(long int index)
+{
+	return index >= column_values.size() ? vector<string>() : column_values[index];
+}
 
 
