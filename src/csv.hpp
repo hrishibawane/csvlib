@@ -20,15 +20,33 @@ private:
 	void show_data(long int rows);
 
 public:
+	/*
+	 * Constructor
+	 */
 	csvlib();
+
+	/*
+	 * Destructor
+	 */
 	~csvlib();
+
+	/*
+	 * Read csv file
+	 */
 	void read_csv(string file_path);
+
+	/*
+	 * Show csv data 
+	 */
 	void show();
+
+
 	void head(long int rows = DEFAULT_ROWS);
 	void tail(long int rows = DEFAULT_ROWS);
 	vector<string> get_columns();
 	vector<vector<string>> get_rows();
 	vector<string> loc(long int index);
+	vector<string> get_column_values(string col_name);
 };
 
 #endif
