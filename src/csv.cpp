@@ -32,6 +32,10 @@ void csvlib::read_csv(string file_path)
 		{
 			while (getline(tokenize, token, ','))
 			{
+				if (token[token.length() - 1] == '\n')
+				{
+					token.pop_back();
+				}
 				column_index.insert({token, column_names.size()});
 				column_names.push_back(token);
 			}
@@ -41,6 +45,10 @@ void csvlib::read_csv(string file_path)
 		vector<string> row_content;
 		while (getline(tokenize, token, ','))
 		{
+			if (token[token.length() - 1] == '\n')
+			{
+				token.pop_back();
+			}
 			row_content.push_back(token);
 		}
 		column_values.push_back(row_content);

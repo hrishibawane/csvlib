@@ -1,1 +1,3 @@
 *.csv
+*.o
+test/tread_csv
