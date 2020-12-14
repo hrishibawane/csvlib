@@ -115,4 +115,13 @@ vector<string> csvlib::loc(long int index)
 	return index >= column_values.size() ? vector<string>() : column_values[index];
 }
 
-
+vector<string> csvlib::get_column_values(string col_name)
+{
+	vector<string> col_data;
+	long int index = column_index[col_name];
+	for (long int n_row = 0; n_row < column_values.size(); n_row++)
+	{
+		col_data.push_back(column_values[n_row][index]); 
+	}
+	return col_data;
+}

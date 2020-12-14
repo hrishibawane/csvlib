@@ -15,4 +15,10 @@ int main()
 	vector<vector<string>> rows = mycsv.get_rows();
 	printf("\nLOC:\n");
 	vector<string> row_loc = mycsv.loc(13);
+	printf("\nCOL_DATA:\n");
+	vector<string> col_data = mycsv.get_column_values("Date");
+	for (auto &s : col_data)
+	{
+		printf("%-5s ", s.c_str());
+	}
 }
