@@ -137,14 +137,14 @@ vector<string> csvlib::get_column_values(string col_name)
 vector<string> csvlib::unique(string col_name)
 {
 	vector<string> unique_data;
-	unordered_set<string> ispresent; 
+	unordered_set<string> is_present; 
 	long int index = column_index[col_name];
 	for (long int n_row = 0; n_row < column_values.size(); n_row++)
 	{
-		if (ispresent.find(column_values[n_row][index]) == ispresent.end())
+		if (is_present.find(column_values[n_row][index]) == is_present.end())
 		{
 			unique_data.push_back(column_values[n_row][index]);
-			ispresent.insert(column_values[n_row][index]);
+			is_present.insert(column_values[n_row][index]);
 		}
 	}
 	return unique_data;
