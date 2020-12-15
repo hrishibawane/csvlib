@@ -6,9 +6,15 @@
 #include <sstream>
 #define MAX 0xFFFF
 
+////////////////////////////////////////////////////////////
+
 csvlib::csvlib() {}
 
+////////////////////////////////////////////////////////////
+
 csvlib::~csvlib() {}
+
+////////////////////////////////////////////////////////////
 
 void csvlib::read_csv(string file_path)
 {
@@ -55,20 +61,28 @@ void csvlib::read_csv(string file_path)
 	}
 }
 
+////////////////////////////////////////////////////////////////
+
 void csvlib::show()
 {
 	show_data(column_values.size());
 }
+
+////////////////////////////////////////////////////////////////
 
 void csvlib::head(long int rows)
 {
 	show_data(rows);
 }
 
+////////////////////////////////////////////////////////////////
+
 void csvlib::tail(long int rows)
 {
 	show_data(-rows);
 }
+
+////////////////////////////////////////////////////////////////
 
 void csvlib::show_data(long int rows)
 {
@@ -108,20 +122,28 @@ void csvlib::show_data(long int rows)
 	}
 }
 
+/////////////////////////////////////////////////////////////////
+
 vector<string> csvlib::get_columns()
 {
 	return column_names;
 }
+
+/////////////////////////////////////////////////////////////////
 
 vector<vector<string>> csvlib::get_rows()
 {
 	return column_values;
 }
 
+/////////////////////////////////////////////////////////////////
+
 vector<string> csvlib::loc(long int index)
 {
 	return index >= column_values.size() ? vector<string>() : column_values[index];
 }
+
+/////////////////////////////////////////////////////////////////
 
 vector<string> csvlib::get_column_values(string col_name)
 {
@@ -133,3 +155,68 @@ vector<string> csvlib::get_column_values(string col_name)
 	}
 	return col_data;
 }
+
+//////////////////////////////////////////////////////////////////
+
+vector<string> csvlib::unique(string col_name)
+{
+	vector<string> unique_data;
+	unordered_set<string> is_present; 
+	long int index = column_index[col_name];
+	for (long int n_row = 0; n_row < column_values.size(); n_row++)
+	{
+		if (is_present.find(column_values[n_row][index]) == is_present.end())
+		{
+			unique_data.push_back(column_values[n_row][index]);
+			is_present.insert(column_values[n_row][index]);
+		}
+	}
+	return unique_data;
+}
+
+///////////////////////////////////////////////////////////////////
+
+void csvlib::to_csv(vector<string> col_names, vector<vector<string>> row_values, string file_name)
+{
+	long int col_names_sz = col_names.size();
+	long int row_values_sz = row_values.size();
+	long int row_len = row_values_sz == 0 ? 0 : row_values[0].size();
+	if (col_names_sz == 0 || (row_len != 0 && col_names_sz != row_len))
+	{
+		printf("Error: Invalid size\n");
+		exit(EXIT_FAILURE);
+	}
+
+	FILE* file_ptr = fopen(file_name.c_str(), "w+");
+	if (file_ptr == NULL)
+	{
+		printf("Error: Cannot create file\n");
+		exit(EXIT_FAILURE);
+	}
+
+	long int n_col = 0;
+	for (n_col = 0; n_col < col_names_sz - 1; n_col++)
+	{
+		fprintf(file_ptr, "%s,", col_names[n_col].c_str());
+	}
+	fprintf(file_ptr, "%s\n", col_names[n_col].c_str());
+
+	long int n_row = 0;
+	for (n_row = 0; n_row < row_values_sz; n_row++)
+	{
+		long int n_elem = 0;
+		for (n_elem = 0; n_elem < row_len - 1; n_elem++)
+		{
+			fprintf(file_ptr, "%s,", row_values[n_row][n_elem].c_str());
+		}
+		fprintf(file_ptr, "%s\n", row_values[n_row][n_elem].c_str());
+	}
+	fclose(file_ptr);
+}
+
+/////////////////////////////////////////////////////////////////////
+
+
+
+
+

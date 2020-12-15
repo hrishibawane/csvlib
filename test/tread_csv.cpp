@@ -17,8 +17,10 @@ int main()
 	vector<string> row_loc = mycsv.loc(13);
 	printf("\nCOL_DATA:\n");
 	vector<string> col_data = mycsv.get_column_values("Salary");
-	for (auto &s : col_data)
+	printf("\nUNIQUE:\n");
+	vector<string> unique_val = mycsv.unique("Suburb");
+	for (auto &s : unique_val)
 	{
-		printf("%-5s ", s.c_str());
+		printf("%-5s, ", s.c_str());
 	}
 }
