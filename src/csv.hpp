@@ -36,12 +36,18 @@ public:
 	void read_csv(string file_path);
 
 	/*
-	 * Show csv data 
+	 * Display csv data 
 	 */
 	void show();
 
-
+	/*
+	 * Display top n rows 
+	 */
 	void head(long int rows = DEFAULT_ROWS);
+
+	/*
+	 * Display bottom n rows  
+	 */
 	void tail(long int rows = DEFAULT_ROWS);
 	vector<string> get_columns();
 	vector<vector<string>> get_rows();
