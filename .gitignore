@@ -1,3 +1,5 @@
 *.csv
 *.o
 test/tread_csv
+test/tto_csv
+*.out
