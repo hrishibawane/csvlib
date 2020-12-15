@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 
 #ifndef CSV_HPP
 #define CSV_HPP
@@ -53,6 +54,11 @@ public:
 	vector<vector<string>> get_rows();
 	vector<string> loc(long int index);
 	vector<string> get_column_values(string col_name);
+
+	/*
+	 * Get all unique data from a column in order of their appearance
+	 */
+	vector<string> unique(string col_name);
 };
 
 #endif
