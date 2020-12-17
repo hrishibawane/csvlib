@@ -2,7 +2,7 @@
 
 int main()
 {
-	csvlib mycsv;
+	hcsv::csvlib mycsv;
 	mycsv.read_csv("test.csv");
 	printf("\nHEAD:\n");
 	mycsv.head(5);
@@ -18,9 +18,13 @@ int main()
 	printf("\nCOL_DATA:\n");
 	vector<string> col_data = mycsv.get_column_values("Salary");
 	printf("\nUNIQUE:\n");
-	vector<string> unique_val = mycsv.unique("Suburb");
+	vector<string> unique_val = mycsv.unique("Location");
 	for (auto &s : unique_val)
 	{
 		printf("%-5s, ", s.c_str());
 	}
+
+	hcsv::csvlib newobj = mycsv;
+	printf("\nNew Obj HEAD:\n");
+	newobj.head();
 }
