@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	csvlib mycsv;
+	hcsv::csvlib mycsv;
 	vector<string> col_names = {"Name", "Class", "Subject", "Marks"};
 	vector<vector<string>> row_values = {
 		{"ABC", "10", "Math", "95"},
