@@ -9,11 +9,10 @@ Refer to below steps to use this library:
 1. ```git clone https://github.com/hrishibawane/csvlib.git```
 2. ```cd csvlib```
 3. ```make build```
-4. Now, ```csv.hpp``` is the **single required header file** for usage.
 
 ### Usage
 
-- Inclusion:
+```csv.hpp``` is the **single required header file** in ```src``` or [released here](https://github.com/hrishibawane/csvlib/releases)
 
 ```cpp
 #include <csvlib/src/csv.hpp>
