@@ -3,3 +3,5 @@
 test/tread_csv
 test/tto_csv
 *.out
+cscope.out
+tags
