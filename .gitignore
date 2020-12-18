@@ -1,7 +1,6 @@
 *.csv
 *.o
-test/tread_csv
-test/tto_csv
 *.out
+test/test_csv
 cscope.out
 tags
